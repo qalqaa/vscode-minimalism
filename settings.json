@@ -1,0 +1,225 @@
+{
+    //global
+    "update.mode": "none",
+
+    //editor
+    //usefull
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.linkedEditing": true,
+    "editor.renderControlCharacters": false,
+    "editor.folding": false,
+    "editor.minimap.enabled": false,
+    "editor.wordWrap": "bounded",
+    "editor.wrappingIndent": "same",
+    "editor.wordWrapColumn": 80,
+    "editor.gotoLocation.multipleDeclarations": "goto",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.glyphMargin": false,
+
+    //stylish-ones
+    "editor.fontSize": 18,
+    "editor.lineHeight": 28,
+    "editor.fontWeight": "400",
+    "editor.smoothScrolling": true,
+    "editor.stickyScroll.enabled": false,
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', 'Consolas', monospace",
+    "editor.fontLigatures": true,
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.scrollbar.verticalScrollbarSize": 6,
+    "editor.scrollBeyondLastLine": false,
+    "editor.scrollbar.horizontalScrollbarSize": 6,
+    "editor.renderLineHighlight": "gutter",
+
+    //terminal
+    "terminal.integrated.fontSize": 18,
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorBlinking": false,
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.tabs.defaultIcon": "file-binary",
+    "terminal.integrated.gpuAcceleration": "off",
+
+    //workbench
+    "workbench.layoutControl.enabled": false,
+    "workbench.welcomePage.walkthroughs.openOnInstall": false,
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.tree.enableStickyScroll": false,
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "workbench.sideBar.location": "right",
+    "workbench.iconTheme": "catppuccin-mocha",
+    "workbench.navigationControl.enabled": false,
+    "workbench.tips.enabled": false,
+    "workbench.statusBar.visible": false,
+    "workbench.activityBar.location": "hidden",
+
+    //window
+    "window.density.editorTabHeight": "compact",
+    "window.commandCenter": false,
+    "window.title": " ",
+
+    //explorer
+    "explorer.compactFolders": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+
+    //breadcrumbs
+    "breadcrumbs.enabled": false,
+    "breadcrumbs.icons": false,
+    "breadcrumbs.showKeys": false,
+    "breadcrumbs.showFiles": false,
+    "breadcrumbs.symbolPath": "off",
+    "breadcrumbs.showArrays": false,
+    "breadcrumbs.showMethods": false,
+    "breadcrumbs.showBooleans": false,
+    "breadcrumbs.showFunctions": false,
+    "breadcrumbs.showConstants": false,
+    "breadcrumbs.showEnumMembers": false,
+    "breadcrumbs.showConstructors": false,
+
+    //git
+    "git.enableSmartCommit": true,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+
+    //HTML+CSS+JS+TS
+    "html.autoClosingTags": true,
+    "javascript.preferences.quoteStyle": "single",
+    "javascript.format.semicolons": "remove",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "javascript.autoClosingTags": true,
+    "typescript.preferences.quoteStyle": "single",
+    "typescript.format.semicolons": "remove",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.autoClosingTags": true,
+    "js/ts.implicitProjectConfig.experimentalDecorators": true,
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "emmet.includeLanguages": {
+        "blade": "html",
+        "javascript": "javascriptreact"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter",
+        "editor.formatOnSave": true,
+        "prettier.singleQuote": true,
+        "prettier.semi": true,
+        "prettier.trailingComma": "all",
+        "prettier.printWidth": 80,
+        "prettier.tabWidth": 4
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter",
+        "editor.formatOnSave": true,
+        "prettier.singleQuote": true,
+        "prettier.semi": true,
+        "prettier.trailingComma": "all",
+        "prettier.printWidth": 80,
+        "prettier.tabWidth": 2
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "prettier.singleQuote": true,
+        "prettier.semi": true,
+        "prettier.trailingComma": "all",
+        "prettier.printWidth": 80,
+        "prettier.tabWidth": 4
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "prettier.singleQuote": true,
+        "prettier.semi": true,
+        "prettier.trailingComma": "all",
+        "prettier.printWidth": 80,
+        "prettier.tabWidth": 4
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "prettier.singleQuote": true,
+        "prettier.semi": true,
+        "prettier.trailingComma": "all",
+        "prettier.printWidth": 80,
+        "prettier.tabWidth": 4
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "prettier.printWidth": 80,
+        "prettier.tabWidth": 4
+    },
+    //frameworks + otherlangs
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "prettier.singleQuote": true,
+        "prettier.semi": true,
+        "prettier.trailingComma": "all",
+        "prettier.printWidth": 80,
+        "prettier.tabWidth": 4
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "prettier.singleQuote": true,
+        "prettier.semi": true,
+        "prettier.trailingComma": "all",
+        "prettier.printWidth": 80,
+        "prettier.tabWidth": 4
+    },
+    "[astro]": {
+        "editor.defaultFormatter": "astro-build.astro-vscode"
+    },
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+
+    //extensions
+    "liveSassCompile.settings.generateMap": false,
+    "codeium.enableCodeLens": false,
+    "vscode-pets.throwBallWithMouse": true,
+    "indentRainbow.indicatorStyle": "light",
+    "indentRainbow.colors": [
+        "rgba(255,255,64,0.2)",
+        "rgba(127,255,127,0.2)",
+        "rgba(255,127,255,0.2)",
+        "rgba(79,236,236,0.2)"
+    ],
+    "codetogether.userName": "qalqa",
+    "cSpell.language": "en, ru",
+    "keyboard.touchbar.enabled": false,
+    "svg.preview.transparencyGrid": false,
+    "svg.preview.boundingBox": true,
+    "redhat.telemetry.enabled": false,
+    "workbench.settings.applyToAllProfiles": ["workbench.colorCustomizations"],
+    "workbench.colorCustomizations": {
+        "terminal.background": "#00000000"
+    },
+    "vue.server.hybridMode": false,
+    "vscode_vibrancy.opacity": -1,
+    "window.autoDetectColorScheme": true,
+    "vscode_vibrancy.enableAutoTheme": true,
+    "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
+    "workbench.preferredLightColorTheme": "Catppuccin Latte",
+    "vscode_vibrancy.theme": "Catppuccin Mocha",
+    "vscode_vibrancy.preferedDarkTheme": "Catppuccin Mocha",
+    "vscode_vibrancy.preferedLightTheme": "Catppuccin Mocha",
+    "vscode_vibrancy.type": "under-window",
+    "vscode_custom_css.imports": [
+        "file:///Users/qalqa/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
+    ],
+    "animations.Enabled": true,
+    "animations.Scrolling": "Fade",
+    "workbench.list.smoothScrolling": true,
+    "workbench.editor.titleScrollbarSizing": "large",
+    "workbench.startupEditor": "none",
+    "vscode-pets.petSize": "medium",
+    "vscode-pets.petColor": "black"
+}
