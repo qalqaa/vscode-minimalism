@@ -1,0 +1,377 @@
+/* === Глобальные стили === */
+.mac {
+  font-family: "Jetbrains Mono" !important;
+}
+
+.monaco-workbench [tabindex="0"]:focus {
+  outline: none !important;
+}
+
+div {
+  overflow: visible !important;
+}
+
+.monaco-pane-view {
+  overflow: hidden !important;
+}
+
+a.monaco-button {
+  border-radius: 5px;
+}
+
+.monaco-inputbox {
+  border-radius: 5px !important;
+  background-color: var(--vscode-input-background) !important;
+}
+
+.suggest-input-container {
+  border-radius: 5px !important;
+}
+
+.pane-body .search-view .search-widget .input-box .monaco-inputbox {
+  background-color: var(--vscode-input-background) !important;
+}
+
+.monaco-findInput .monaco-inputbox {
+  background-color: var(--vscode-input-background) !important;
+}
+
+/* === Стили миникарты (Minimap) === */
+.minimap,
+.editor-scrollable > .decorationsOverviewRuler {
+  left: unset !important;
+  right: 0 !important;
+  width: 0px !important;
+  position: absolute !important;
+}
+
+.minimap canvas:first-of-type {
+  display: none !important;
+}
+
+.minimap .minimap-decorations-layer {
+  background-color: transparent !important;
+  width: 12px !important;
+  left: unset !important;
+  right: 5px !important;
+}
+
+.minimap .minimap-slider {
+  width: 4px !important;
+  left: unset !important;
+  border-radius: 4px !important;
+  right: 5px !important;
+}
+
+/* === Прокрутка и переполнение (Scroll & Overflow) === */
+.monaco-scrollable-element > .scrollbar > .slider {
+  display: none !important;
+}
+
+.editor-instance > .monaco-editor .overflow-guard {
+  margin-top: 15px;
+}
+
+.monaco-scrollable-element > .shadow.top {
+  display: none !important;
+}
+
+.monaco-editor .scroll-decoration {
+  display: none !important;
+}
+
+/* === Виджет поиска (Find Widget) === */
+.monaco-editor .find-widget,
+.monaco-editor .findOptionsWidget {
+  box-shadow: none !important;
+  transform: unset !important;
+  top: unset !important;
+  border-radius: 5px;
+  padding: 1px 7px !important;
+  transition: 0.2s ease-in-out;
+  opacity: 0;
+  top: -10px !important;
+  right: 10px !important;
+  pointer-events: none;
+}
+
+.monaco-editor .find-widget.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.monaco-editor .find-widget .button:not(.disabled):hover,
+.monaco-editor .find-widget .codicon-find-selection:hover {
+  background-color: hwb(232 71% 0% / 0.05) !important;
+}
+
+.monaco-editor .find-widget .monaco-sash {
+  display: none !important;
+}
+
+.monaco-editor .find-widget .button.toggle {
+  border-radius: 5px;
+  left: 0 !important;
+}
+
+/* === Подсказки (Suggest) === */
+
+.monaco-editor .suggest-details,
+.monaco-editor .suggest-widget {
+  overflow: hidden !important;
+  border: none !important;
+  border-radius: 5px !important;
+}
+
+/* === Заголовки редактора и вкладки (Editor Titles & Tabs) === */
+.monaco-workbench .part > .title > .title-label h2 {
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  padding-left: 20px;
+}
+
+.monaco-workbench .part > .title > .title-label {
+  padding-left: 0;
+}
+
+.monaco-workbench .part.editor > .content .editor-group-container > .title:not(.tabs) {
+  background-color: transparent !important;
+}
+
+.monaco-workbench .part.editor > .content .editor-group-container > .title {
+  padding-left: 70px !important;
+  margin-top: -28px;
+  z-index: 99;
+}
+
+.monaco-workbench .part.editor > .content .editor-group-container > .title .editor-actions {
+  margin: calc((32px - 24px) / 2) 0;
+}
+
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container {
+  height: 32px;
+  gap: 4px;
+  overflow: hidden !important;
+}
+
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab.sizing-fit {
+  height: 24px;
+  margin: calc((32px - 24px) / 2) 0;
+  border-radius: 5px;
+}
+
+.monaco-workbench
+  .part.editor
+  > .content
+  .editor-group-container
+  > .title
+  .tabs-container
+  > .tab.active.tab-border-top
+  > .tab-border-top-container,
+.monaco-workbench
+  .part.editor
+  > .content
+  .editor-group-container
+  > .title
+  .tabs-container
+  > .tab.selected.tab-border-top
+  > .tab-border-top-container {
+  display: none !important;
+}
+
+.monaco-workbench .part.editor > .content .editor-group-container.active > .title .tabs-container > .tab.active {
+  background-color: var(--vscode-minimapSlider-background) !important;
+}
+
+/* === Панель и боковая панель (Pane & Sidebar) === */
+.monaco-pane-view .pane > .pane-header h3.title {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.sidebar .content {
+  padding-left: 5px;
+}
+
+.monaco-workbench .part.sidebar .title-actions .actions-container {
+  display: none !important;
+}
+
+.monaco-workbench .part.sidebar {
+  position: absolute;
+  top: -28px;
+  padding-bottom: 28px;
+}
+
+.composite.viewlet.explorer-viewlet > .monaco-pane-view {
+  transform: scale(1.035) translateY(20px);
+}
+
+.monaco-workbench
+  .pane-composite-part
+  > .header-or-footer
+  > .composite-bar-container
+  > .composite-bar
+  > .monaco-action-bar
+  .action-item.icon {
+  height: 24px !important;
+  border-radius: 5px;
+}
+
+.monaco-workbench
+  .pane-composite-part
+  > .header-or-footer
+  > .composite-bar-container
+  > .composite-bar
+  > .monaco-action-bar
+  .action-item.icon.checked {
+  background-color: var(--vscode-minimapSlider-background) !important;
+}
+
+.monaco-workbench
+  .pane-composite-part
+  > .header-or-footer
+  > .composite-bar-container
+  > .composite-bar
+  > .monaco-action-bar {
+  height: 32px !important;
+}
+
+/* === Быстрый ввод и командный центр (Quick Input & Command Center) === */
+.command-center-center {
+  width: auto !important;
+}
+
+.quick-input-widget {
+  transform: translateY(-50%) !important;
+  top: 50% !important;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.45) !important;
+  padding: 10px 10px 18px 10px !important;
+  backdrop-filter: blur(30px) !important;
+  border-radius: 10px !important;
+}
+
+.quick-input-filter .monaco-inputbox {
+  border-radius: 8px !important;
+  padding: 8px !important;
+  border: none !important;
+  font-size: 14px !important;
+  margin-bottom: 16px !important;
+}
+
+/* === Split View === */
+.split-view-view {
+  font-size: 14px;
+}
+
+.split-view-container > .split-view-view:has(.part.titlebar) {
+  height: 32px !important;
+  position: absolute !important;
+  width: 64px !important;
+}
+
+/* === Иконки и декоративные элементы (Icons & Decorations) === */
+.codicon-view-pane-container-expanded:before {
+  display: none !important;
+}
+
+.codicon-view-pane-container-collapsed:before {
+  display: none !important;
+}
+
+.codicon-arrow-right,
+.codicon-arrow-left {
+  display: none !important;
+}
+
+.search-icon {
+  display: none !important;
+}
+
+.titlebar-right > * {
+  display: none !important;
+}
+
+.titlebar-center {
+  display: none !important;
+}
+
+/* === Списки и уведомления (Lists & Notifications) === */
+.monaco-list-rows {
+  background: transparent !important;
+}
+
+.monaco-list-row:hover {
+  background: #cba6f75d !important;
+}
+
+.monaco-list-row.focused {
+  background-color: #cba6f75d !important;
+}
+
+.monaco-list.list_id_4 .monaco-list-rows {
+  background-color: transparent !important;
+}
+
+.notifications-toasts .monaco-list-row:hover {
+  background: none !important;
+}
+
+.notification-toast {
+  border: 1px transparent !important;
+}
+
+/* === Поиск и поля ввода (Search & Input) === */
+.search-label {
+  font-size: 14px !important;
+  color: #fff;
+  display: block;
+}
+
+/* === Эффекты наведения (Hover Effects) === */
+.monaco-editor-hover,
+.monaco-hover {
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.45) !important;
+  padding: 10px !important;
+  backdrop-filter: blur(30px) !important;
+  border-radius: 10px !important;
+  border: none !important;
+}
+
+/* === Оверлей для команд (Command Blur) === */
+#command-blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(8px);
+}
+
+/* === Настройки (Settings) === */
+.settings-editor > .settings-body,
+.extensions-list {
+  overflow: hidden !important;
+}
+
+/* === Терминал (Terminal) === */
+.monaco-workbench .xterm .xterm-scrollable-element {
+  background-color: transparent !important;
+}
+
+.monaco-workbench .pane-body.integrated-terminal .xterm-decoration-overview-ruler,
+.monaco-workbench .terminal-editor .xterm-decoration-overview-ruler {
+  width: 4px !important;
+}
+
+.xterm .xterm-scrollable-element > .scrollbar > .slider {
+  width: 4px !important;
+  border-radius: 4px;
+  background: var(--vscode-minimapSlider-background) !important;
+}
+
+.xterm .xterm-scrollable-element > .scrollbar {
+  width: 6px !important;
+  padding: 0 1px;
+}
