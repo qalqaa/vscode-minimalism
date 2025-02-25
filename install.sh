@@ -93,7 +93,7 @@ fi
 
 echo "User settings directory: $USER_SETTINGS_DIR"
 
-SETTINGS_FILE="./settings-ot.json"
+SETTINGS_FILE="./src/settings/settings-ot.json"
 TARGET_SETTINGS="$USER_SETTINGS_DIR/settings.json"
 
 if [ -f "$SETTINGS_FILE" ]; then
@@ -118,7 +118,7 @@ printf "\e[32m          SETTINGS HAVE BEEN UPDATED          \e[0m\n"
 printf "\e[32m══════════════════════════════════════════════\e[0m\n"
 echo ""
 
-CUSTOM_CSS_FILE="./qalqa-customcss.css"
+CUSTOM_CSS_FILE="./src/styles/qalqa-customcss.css"
 if [ -f "$CUSTOM_CSS_FILE" ]; then
     cp "$CUSTOM_CSS_FILE" "$USER_SETTINGS_DIR/qalqa-customcss.css"
     echo "qalqa-customcss.css copied into $USER_SETTINGS_DIR!"
