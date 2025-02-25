@@ -141,21 +141,38 @@ echo "User settings directory: $USER_SETTINGS_DIR"
 SETTINGS_FILE="./src/settings/settings.json"
 TARGET_SETTINGS="$USER_SETTINGS_DIR/settings.json"
 
-if [ -f "$SETTINGS_FILE" ]; then
-  echo "Updating settings.json..."
-  if [ -f "$TARGET_SETTINGS" ]; then
-    tmp_file=$(mktemp)
-    jq -s '.[1] as $user | 
-               (.[0] | to_entries | map(select(.key as $k | ($user | has($k) | not))) | from_entries) as $diff |
-               $user + $diff' "$SETTINGS_FILE" "$TARGET_SETTINGS" >"$tmp_file" && mv "$tmp_file" "$TARGET_SETTINGS"
-    echo "Added settings to your settings.json!"
-  else
-    cp "$SETTINGS_FILE" "$TARGET_SETTINGS"
-    echo "settings.json not found, created new with new settings"
-  fi
+case "$OS_TYPE" in
+"Linux" | "Darwin")
+  EXTENSIONS_DIR="$HOME/.vscode/extensions"
+  ;;
+"MINGW32_NT"* | "MINGW64_NT"* | "CYGWIN"*)
+  EXTENSIONS_DIR="${APPDATA:-$HOME/AppData/Roaming}/Code/User"
+  ;;
+*)
+  echo "Unknown operating system, cannot generate paths automatically!"
+  exit 1
+  ;;
+esac
+
+VSCODE_ANIMATIONS_PATH="$EXTENSIONS_DIR/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
+CUSTOM_CSS_PATH="$USER_SETTINGS_DIR/qalqa-customcss.css"
+
+echo "Updating settings.json..."
+if [ -f "$TARGET_SETTINGS" ]; then
+  tmp_file=$(mktemp)
+  jq -s '.[1] as $user | 
+           (.[0] | to_entries | map(select(.key as $k | ($user | has($k) | not))) | from_entries) as $diff |
+           $user + $diff' "$SETTINGS_FILE" "$TARGET_SETTINGS" >"$tmp_file" && mv "$tmp_file" "$TARGET_SETTINGS"
+  echo "Added settings to your settings.json!"
 else
-  echo "settings.json not found"
+  cp "$SETTINGS_FILE" "$TARGET_SETTINGS"
+  echo "settings.json not found, created new with new settings"
 fi
+
+jq --arg animationsPath "file://$VSCODE_ANIMATIONS_PATH" \
+  --arg customCssPath "file://$CUSTOM_CSS_PATH" \
+  '. + { "vscode_custom_css.imports": [$animationsPath, $customCssPath] }' \
+  "$TARGET_SETTINGS" >"$TARGET_SETTINGS.tmp" && mv "$TARGET_SETTINGS.tmp" "$TARGET_SETTINGS"
 
 echo ""
 printf "\e[32m══════════════════════════════════════════════\e[0m\n"

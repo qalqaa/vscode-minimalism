@@ -48,10 +48,6 @@
     "vscode_vibrancy.theme": "Catppuccin Mocha",
     "vscode_vibrancy.preferedDarkTheme": "Catppuccin Mocha",
     "vscode_vibrancy.type": "under-window",
-    "vscode_custom_css.imports": [
-        "file:///Users/qalqa/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js",
-        "file:///Users/qalqa/Library/Application%20Support/Code/User/qalqa-customcss.css"
-    ],
     "animations.Enabled": true,
     "animations.Scrolling": "Fade",
     "catppuccin-icons.hidesExplorerArrows": true,

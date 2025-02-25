@@ -96,21 +96,38 @@ echo "User settings directory: $USER_SETTINGS_DIR"
 SETTINGS_FILE="./src/settings/settings-ot.json"
 TARGET_SETTINGS="$USER_SETTINGS_DIR/settings.json"
 
-if [ -f "$SETTINGS_FILE" ]; then
-    echo "Updating settings.json..."
-    if [ -f "$TARGET_SETTINGS" ]; then
-        tmp_file=$(mktemp)
-        jq -s '.[1] as $user | 
-               (.[0] | to_entries | map(select(.key as $k | ($user | has($k) | not))) | from_entries) as $diff |
-               $user + $diff' "$SETTINGS_FILE" "$TARGET_SETTINGS" >"$tmp_file" && mv "$tmp_file" "$TARGET_SETTINGS"
-        echo "Added settings to your settings.json!"
-    else
-        cp "$SETTINGS_FILE" "$TARGET_SETTINGS"
-        echo "settings.json not found, created new with new settings"
-    fi
+case "$OS_TYPE" in
+"Linux" | "Darwin")
+    EXTENSIONS_DIR="$HOME/.vscode/extensions"
+    ;;
+"MINGW32_NT"* | "MINGW64_NT"* | "CYGWIN"*)
+    EXTENSIONS_DIR="${APPDATA:-$HOME/AppData/Roaming}/Code/User"
+    ;;
+*)
+    echo "Unknown operating system, cannot generate paths automatically!"
+    exit 1
+    ;;
+esac
+
+VSCODE_ANIMATIONS_PATH="$EXTENSIONS_DIR/brandonkirbyson.vscode-animations-2.0.7/dist/updateHandler.js"
+CUSTOM_CSS_PATH="$USER_SETTINGS_DIR/qalqa-customcss.css"
+
+echo "Updating settings.json..."
+if [ -f "$TARGET_SETTINGS" ]; then
+    tmp_file=$(mktemp)
+    jq -s '.[1] as $user | 
+           (.[0] | to_entries | map(select(.key as $k | ($user | has($k) | not))) | from_entries) as $diff |
+           $user + $diff' "$SETTINGS_FILE" "$TARGET_SETTINGS" >"$tmp_file" && mv "$tmp_file" "$TARGET_SETTINGS"
+    echo "Added settings to your settings.json!"
 else
-    echo "settings.json not found"
+    cp "$SETTINGS_FILE" "$TARGET_SETTINGS"
+    echo "settings.json not found, created new with new settings"
 fi
+
+jq --arg animationsPath "file://$VSCODE_ANIMATIONS_PATH" \
+    --arg customCssPath "file://$CUSTOM_CSS_PATH" \
+    '. + { "vscode_custom_css.imports": [$animationsPath, $customCssPath] }' \
+    "$TARGET_SETTINGS" >"$TARGET_SETTINGS.tmp" && mv "$TARGET_SETTINGS.tmp" "$TARGET_SETTINGS"
 
 echo ""
 printf "\e[32m══════════════════════════════════════════════\e[0m\n"
@@ -125,26 +142,6 @@ if [ -f "$CUSTOM_CSS_FILE" ]; then
 else
     echo "qalqa-customcss.css not found"
 fi
-
-# echo "Running post-installation commands..."
-
-# if [[ "$OS_TYPE" == "Linux" ]]; then
-#     xdg-open "vscode://command/extension.installCustomCSS"
-#     xdg-open "vscode://command/VSCode-Animations.enableAnimations"
-#     xdg-open "vscode://command/extension.installVibrancy"
-# elif [[ "$OS_TYPE" == "Darwin" ]]; then
-#     open "vscode://command/extension.installCustomCSS"
-#     open "vscode://command/VSCode-Animations.enableAnimations"
-#     open "vscode://command/extension.installVibrancy"
-# elif [[ "$OS_TYPE" == "MINGW32_NT"* ]] || [[ "$OS_TYPE" == "MINGW64_NT"* ]] || [[ "$OS_TYPE" == "CYGWIN"* ]]; then
-#     start "" "vscode://command/extension.installCustomCSS"
-#     start "" "vscode://command/VSCode-Animations.enableAnimations"
-#     start "" "vscode://command/extension.installVibrancy"
-# else
-#     echo "Unknown operating system, skipping post-installation commands. Please run them manually. Check the README for more info"
-# fi
-
-# echo "Post-installation commands executed successfully!"
 
 echo ""
 printf "\e[32m══════════════════════════════════════════════\e[0m\n"

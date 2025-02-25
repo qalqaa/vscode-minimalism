@@ -68,8 +68,9 @@ a.monaco-button {
   display: none !important;
 }
 
-.editor-instance > .monaco-editor .overflow-guard {
-  margin-top: 15px;
+.editor-container {
+  padding-top: 15px;
+  overflow: hidden !important;
 }
 
 .monaco-scrollable-element > .shadow.top {
@@ -90,7 +91,7 @@ a.monaco-button {
   padding: 1px 7px !important;
   transition: 0.2s ease-in-out;
   opacity: 0;
-  top: -10px !important;
+  top: -15px !important;
   right: 10px !important;
   pointer-events: none;
 }
@@ -126,8 +127,8 @@ a.monaco-button {
 /* === Заголовки редактора и вкладки (Editor Titles & Tabs) === */
 .monaco-workbench .part > .title > .title-label h2 {
   font-weight: 700 !important;
-  font-size: 14px !important;
-  padding-left: 20px;
+  font-size: 16px !important;
+  padding-left: 18px !important;
 }
 
 .monaco-workbench .part > .title > .title-label {
@@ -203,10 +204,6 @@ a.monaco-button {
   padding-bottom: 28px;
 }
 
-.composite.viewlet.explorer-viewlet > .monaco-pane-view {
-  transform: scale(1.035) translateY(20px);
-}
-
 .monaco-workbench
   .pane-composite-part
   > .header-or-footer
@@ -267,7 +264,8 @@ a.monaco-button {
 .split-view-container > .split-view-view:has(.part.titlebar) {
   height: 32px !important;
   position: absolute !important;
-  width: 64px !important;
+  top: unset !important;
+  bottom: 0 !important;
 }
 
 /* === Иконки и декоративные элементы (Icons & Decorations) === */
@@ -285,10 +283,6 @@ a.monaco-button {
 }
 
 .search-icon {
-  display: none !important;
-}
-
-.titlebar-right > * {
   display: none !important;
 }
 
