@@ -32,15 +32,15 @@ ask_to_install() {
     while true; do
         read -n1 -s key
         case "$key" in
-            [Yy] ) 
-                printf "\e[32m✓\e[0m\n"
-                optional_extensions+=("$extension_id")
-                break
-                ;;
-            [Nn] ) 
-                printf "\e[31mx\e[0m\n"
-                break
-                ;;
+        [Yy])
+            printf "\e[32m✓\e[0m\n"
+            optional_extensions+=("$extension_id")
+            break
+            ;;
+        [Nn])
+            printf "\e[31mx\e[0m\n"
+            break
+            ;;
         esac
     done
 }
@@ -65,37 +65,29 @@ printf "\e[32m  ALL EXTENSIONS HAVE BEEN INSTALLED  \e[0m\n"
 printf "\e[32m======================================\e[0m\n"
 echo ""
 
-echo "Используете ли вы стандартное расположение настроек VSCode? (Y/N): "
+echo "Are you using the standard VSCode settings layout? (Y/N): "
 read -n1 -s std_answer
 echo
 if [[ $std_answer =~ [Yy] ]]; then
-    echo "Choose your OS:"
-    echo "1) Windows"
-    echo "2) Linux (careful!)"
-    echo "3) MacOS"
-    while true; do
-        echo -n "(1/2/3): "
-        read -n1 -s os_choice
-        echo "$os_choice"
-        if [[ "$os_choice" == "1" || "$os_choice" == "2" || "$os_choice" == "3" ]]; then
-            break
-        else
-            echo "Неверный выбор. Пожалуйста, попробуйте снова."
-        fi
-    done
-    case "$os_choice" in
-        1) 
-            USER_SETTINGS_DIR="${APPDATA:-$HOME/AppData/Roaming}/Code/User"
-            ;;
-        2) 
-            USER_SETTINGS_DIR="$HOME/.config/Code/User"
-            ;;
-        3) 
-            USER_SETTINGS_DIR="$HOME/Library/Application Support/Code/User"
-            ;;
+    OS_TYPE=$(uname)
+
+    case "$OS_TYPE" in
+    "Linux")
+        USER_SETTINGS_DIR="$HOME/.config/Code/User"
+        ;;
+    "Darwin")
+        USER_SETTINGS_DIR="$HOME/Library/Application Support/Code/User"
+        ;;
+    "MINGW32_NT"* | "MINGW64_NT"* | "CYGWIN"*)
+        USER_SETTINGS_DIR="${APPDATA:-$HOME/AppData/Roaming}/Code/User"
+        ;;
+    *)
+        echo "Unknown operating system, please input the full path to the settings directory manually!"
+        read -p "Input the full path to the VSCode settings directory: " USER_SETTINGS_DIR
+        ;;
     esac
 else
-    read -p "Введите полный путь к папке настроек VSCode: " USER_SETTINGS_DIR
+    read -p "Input the full path to the settings directory: " USER_SETTINGS_DIR
 fi
 
 echo "User settings directory: $USER_SETTINGS_DIR"
@@ -109,7 +101,7 @@ if [ -f "$SETTINGS_FILE" ]; then
         tmp_file=$(mktemp)
         jq -s '.[1] as $user | 
                (.[0] | to_entries | map(select(.key as $k | ($user | has($k) | not))) | from_entries) as $diff |
-               $user + $diff' "$SETTINGS_FILE" "$TARGET_SETTINGS" > "$tmp_file" && mv "$tmp_file" "$TARGET_SETTINGS"
+               $user + $diff' "$SETTINGS_FILE" "$TARGET_SETTINGS" >"$tmp_file" && mv "$tmp_file" "$TARGET_SETTINGS"
         echo "Added settings to your settings.json!"
     else
         cp "$SETTINGS_FILE" "$TARGET_SETTINGS"
@@ -119,9 +111,41 @@ else
     echo "settings.json not found"
 fi
 
+echo ""
+printf "\e[32m======================================\e[0m\n"
+printf "\e[32m     SETTINGS HAVE BEEN UPDATED       \e[0m\n"
+printf "\e[32m======================================\e[0m\n"
+echo ""
+
+CUSTOM_CSS_FILE="./qalqa-customcss.css"
+if [ -f "$CUSTOM_CSS_FILE" ]; then
+    cp "$CUSTOM_CSS_FILE" "$USER_SETTINGS_DIR/qalqa-customcss.css"
+    echo "qalqa-customcss.css copied into $USER_SETTINGS_DIR!"
+else
+    echo "qalqa-customcss.css not found"
+fi
+
+echo "Running post-installation commands..."
+
+if [[ "$OS_TYPE" == "Linux" ]]; then
+    xdg-open "vscode://command/extension.installCustomCSS"
+    xdg-open "vscode://command/VSCode-Animations.enableAnimations"
+    xdg-open "vscode://command/extension.installVibrancy"
+elif [[ "$OS_TYPE" == "Darwin" ]]; then
+    open "vscode://command/extension.installCustomCSS"
+    open "vscode://command/VSCode-Animations.enableAnimations"
+    open "vscode://command/extension.installVibrancy"
+elif [[ "$OS_TYPE" == "MINGW32_NT"* ]] || [[ "$OS_TYPE" == "MINGW64_NT"* ]] || [[ "$OS_TYPE" == "CYGWIN"* ]]; then
+    start "" "vscode://command/extension.installCustomCSS"
+    start "" "vscode://command/VSCode-Animations.enableAnimations"
+    start "" "vscode://command/extension.installVibrancy"
+else
+    echo "Unknown operating system, skipping post-installation commands. Please run them manually. Check the README for more info"
+fi
+
+echo "Post-installation commands executed successfully!"
 
 echo ""
 printf "\e[32m======================================\e[0m\n"
 printf "\e[32m        INSTALLATION COMPLETED        \e[0m\n"
 printf "\e[32m======================================\e[0m\n"
-
