@@ -335,6 +335,7 @@ a.monaco-button {
   padding: 10px !important;
   backdrop-filter: blur(30px) !important;
   border-radius: 10px !important;
+  overflow: auto !important;
   border: none !important;
 }
 
@@ -351,7 +352,11 @@ a.monaco-button {
 
 /* === Настройки (Settings) === */
 .settings-editor > .settings-body,
-.extensions-list {
+.extensions-list,
+.extension-list-item > .details,
+.extension-list-item .ellipsis,
+.monaco-tl-contents,
+.monaco-icon-label > .monaco-icon-label-container {
   overflow: hidden !important;
 }
 
