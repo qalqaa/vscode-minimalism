@@ -110,6 +110,36 @@ echo ""
 printf "\e[32m══════════════════════════════════════════════\e[0m\n"
 printf "\e[32m      ALL EXTENSIONS HAVE BEEN INSTALLED      \e[0m\n"
 printf "\e[32m══════════════════════════════════════════════\e[0m\n"
+echo ""
+
+FONT_SOURCE_DIR="./src/fonts/JetBrainsMono"
+echo "Do you want to install JetBrains Mono fonts? (Y/N): "
+read -n1 -s install_fonts
+echo
+if [[ $install_fonts =~ [Yy] ]]; then
+  OS_TYPE=$(uname)
+  case "$OS_TYPE" in
+  "Linux")
+    FONT_DEST_DIR="$HOME/.local/share/fonts"
+    mkdir -p "$FONT_DEST_DIR"
+    cp "$FONT_SOURCE_DIR"/* "$FONT_DEST_DIR/"
+    fc-cache -fv
+    ;;
+  "Darwin")
+    FONT_DEST_DIR="$HOME/Library/Fonts"
+    mkdir -p "$FONT_DEST_DIR"
+    cp "$FONT_SOURCE_DIR"/* "$FONT_DEST_DIR/"
+    ;;
+  "MINGW32_NT"* | "MINGW64_NT"* | "CYGWIN"*)
+    FONT_DEST_DIR="$WINDIR/Fonts"
+    cp "$FONT_SOURCE_DIR"/* "$FONT_DEST_DIR/"
+    ;;
+  *)
+    echo "Unknown operating system, please install fonts manually."
+    ;;
+  esac
+  echo "JetBrains Mono fonts installed successfully!"
+fi
 
 echo "Are you using the standard VSCode settings layout? (Y/N): "
 read -n1 -s std_answer
