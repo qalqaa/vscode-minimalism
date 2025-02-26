@@ -128,7 +128,6 @@ a.monaco-button {
 .monaco-workbench .part > .title > .title-label h2 {
   font-weight: 700 !important;
   font-size: 16px !important;
-  padding-left: 18px !important;
 }
 
 .monaco-workbench .part > .title > .title-label {
@@ -145,20 +144,22 @@ a.monaco-button {
   z-index: 99;
 }
 
-.monaco-workbench .part.editor > .content .editor-group-container > .title .editor-actions {
-  margin: calc((32px - 24px) / 2) 0;
-}
-
 .monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container {
   height: 32px;
   gap: 4px;
   overflow: hidden !important;
 }
 
+.monaco-workbench .part.editor > .content .editor-group-container > .title .editor-actions {
+  margin: calc((32px - 24px) / 2) 0;
+  -webkit-app-region: no-drag;
+}
+
 .monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container > .tab.sizing-fit {
   height: 24px;
   margin: calc((32px - 24px) / 2) 0;
   border-radius: 5px;
+  -webkit-app-region: no-drag;
 }
 
 .monaco-workbench
@@ -188,10 +189,6 @@ a.monaco-button {
 .monaco-pane-view .pane > .pane-header h3.title {
   padding-left: 4px;
   padding-right: 4px;
-}
-
-.sidebar .content {
-  padding-left: 5px;
 }
 
 .monaco-workbench .part.sidebar .title-actions .actions-container {
@@ -232,6 +229,13 @@ a.monaco-button {
   > .composite-bar
   > .monaco-action-bar {
   height: 32px !important;
+  -webkit-app-region: no-drag;
+}
+
+.action-toolbar-container > .monaco-toolbar > .monaco-action-bar {
+  position: absolute;
+  bottom: calc(-100vh + 28px);
+  right: -5px;
 }
 
 /* === Быстрый ввод и командный центр (Quick Input & Command Center) === */
@@ -263,9 +267,6 @@ a.monaco-button {
 
 .split-view-container > .split-view-view:has(.part.titlebar) {
   height: 32px !important;
-  position: absolute !important;
-  top: unset !important;
-  bottom: 0 !important;
 }
 
 /* === Иконки и декоративные элементы (Icons & Decorations) === */
