@@ -18,7 +18,8 @@ This theme completely reworks VSCode's layout with added transparency and smooth
 ### 1. Install Outdated VSCode
 
 Download and install the legacy version:  
-[VSCode 1.95.3](https://drive.google.com/file/d/1ED8tpUxnub-BNxfodq2fmRKtk3cPZAQ7/view?usp=drive_link)
+[VSCode 1.95.3 of MacOS](https://drive.google.com/file/d/1ED8tpUxnub-BNxfodq2fmRKtk3cPZAQ7/view?usp=drive_link)
+[VSCode 1.95.3 for Windows](https://update.code.visualstudio.com/1.85.2/win32-x64-user/stable)
 
 ### 2. Disable Automatic Updates
 
