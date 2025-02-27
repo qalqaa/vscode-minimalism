@@ -141,7 +141,7 @@ a.monaco-button {
 .monaco-workbench .part.editor > .content .editor-group-container > .title {
   padding-left: 70px;
   margin-top: -28px;
-  z-index: 99;
+  overflow: hidden !important;
 }
 
 .monaco-split-view2.horizontal
