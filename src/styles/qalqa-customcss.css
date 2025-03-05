@@ -211,6 +211,10 @@ a.monaco-button {
   padding-bottom: 28px;
 }
 
+.monaco-workbench .part.sidebar > .title {
+  background: transparent !important;
+}
+
 .monaco-workbench
   .pane-composite-part
   > .header-or-footer
@@ -273,6 +277,10 @@ a.monaco-button {
 /* === Split View === */
 .split-view-view {
   font-size: 14px;
+}
+
+.monaco-pane-view .split-view-view > .pane > .pane-header {
+  background: transparent !important;
 }
 
 .split-view-container > .split-view-view:has(.part.titlebar) {
